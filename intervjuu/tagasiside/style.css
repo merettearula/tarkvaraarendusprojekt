@@ -1,0 +1,48 @@
+.messageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    color: black;
+}
+
+button {
+    padding: 10px;
+    margin: 5px;
+    background-color: #c9c9c9;
+    border: 1px solid #000000;
+    cursor: pointer;
+    width: 125px;
+}
+
+input, textarea {
+    height: 35px;
+    font-size: 20px;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #9b9b9b;
+    cursor: pointer;
+}
+
+body, #main {
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    flex-direction: column;
+    color: black;
+    background-color: rgb(255, 245, 235);
+}
+
+textarea {
+    height: 250px;
+}
+
+label {
+    font-size: 25px;
+}
+

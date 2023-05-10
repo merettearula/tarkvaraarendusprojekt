@@ -1,0 +1,115 @@
+button {
+    width: 25%;
+    padding: 10px;
+    margin: 5px;
+    background-color: #c9c9c9;
+    border: 1px solid #000000;
+    cursor: pointer;
+}
+
+button:hover, input:hover {
+    background-color: #5f5f5f;
+}
+
+#muteImage:hover, #replayImage:hover {
+    cursor: pointer;
+}
+
+.OptionState{
+    display:none
+}      /* valikvastuse nupp */
+.Option{
+    margin: auto;
+    text-align: center;
+    height: auto;
+    width: 90%;
+    padding:10px; 
+    margin:4px; 
+    background:#CCC; 
+    border:1px solid #333; 
+    cursor:pointer;
+    font-size: 25px;
+}
+.OptionState:checked + .Option{
+    background:#8b8b8b;
+}
+
+.optionContainer {              /* valikvastuste asetus */
+    display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
+  grid-template-rows: repeat(2, 1fr); /* Two rows with equal height */
+  grid-gap: 10px; /* Gap between grid items */
+  justify-items: center; /* Center items horizontally */
+  align-items: center; /* Center items vertically */
+}
+
+#nextContainer, .questionContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    font-size: 50px;
+}
+
+.questionContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+div > .questionContainer {
+    margin: 0 15px;
+    flex: 0 0 auto;
+}
+
+  
+.buttonContainer button {       /* alumised nupud (edasi, heli) */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    height: 100%;
+}
+
+#resultContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+    color: green;
+}
+/*Useless*/
+.messageContainer text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: green;
+}
+  
+#main, #displayContainer, #progressContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+#main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 10px;
+}
+
+.feedbackContainer {
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    flex-direction: column;
+}

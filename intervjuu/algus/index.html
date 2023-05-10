@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="main">
+        <label for="name">Sisesta oma nimi:</label>
+        <input type="text" name="name" id="name">
+        <label for="education">Vali oma haridustase:</label>
+        <select id="education" name="education">
+            <option value="bakalaureus">Bakalaureus</option>
+            <option value="magister">Magister</option>
+            <option value="doktor">Doktor</option>
+            <option value="muu">Muu</option>
+        </select>
+        <label for="profession">Sisesta oma amet:</label>
+        <input type="text" name="profession" id="profession">
+        <label for="hobbies">Sisesta oma hobid:</label>
+        <textarea type="text" name="hobbies" id="hobbies"></textarea>
+    </div>
+    <div id="buttonContainer">
+        <button onclick="window.location.href='../kysimused/kysimus1'">Edasi</button>
+    </div>
+    <br><hr>
+    <!--
+    <div id="technicalContainer">Tehniline pool<br>
+        <button id="save">Salvesta andmed</button>
+        <button id="load">Laadi andmed</button>
+        <button id="delete">Kustuta andmed</button>
+    </div>
+    <div id="textContainer"> <br> Siia laeme andmed</div>
+    -->
+</body>
+</html>
