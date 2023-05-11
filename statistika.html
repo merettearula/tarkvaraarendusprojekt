@@ -15,10 +15,13 @@
     <input type="date" id="from">
     <label for="to">Kuni:</label>
     <input type="date" id="to">
-    <button onclick="filterResults()">Filtreeri</button>
-    <button onclick="clearFilter()">Tühjenda</button>
-    <button id="csvButton" onclick="exportToCSV()">Export CSV</button>
-    <button id="excelButton" onclick="exportToExcel()">Export Excel</button>
+    <button class="button" onclick="filterResults()">Filtreeri</button>
+    <button class="button" onclick="clearFilter()">Tühjenda</button>
+    <button class="button" id="csvButton" onclick="exportToCSV()">Export CSV</button>
+	<button class="button" id="excelButton" onclick="exportToExcel()">Export Excel</button>
+    <button class="button" id="logoutButton" onclick="logout()">Log Out</button>
+	<button class="button clicked" id="statisticsButton" onclick="window.location.href='statistika.html'">Statistika</button>
+	<button class="button" id="feedbackButton" onclick="window.location.href='tagasiside.html'">Tagasiside</button>
 
     <button id="logoutButton" onclick="logout()">Log Out</button>
 

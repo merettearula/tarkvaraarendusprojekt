@@ -15,10 +15,13 @@
     <input type="date" id="from">
     <label for="to">Kuni:</label>
     <input type="date" id="to">
-    <button onclick="filterResults()">Filtreeri</button>
-    <button onclick="clearFilter()">Tühjenda</button>
-    <button id="csvButton" onclick="exportToCSV()">Export CSV</button>
-    <button id="excelButton" onclick="exportToExcel()">Export Excel</button>
+    <button class="button" onclick="filterResults()">Filtreeri</button>
+    <button class="button" onclick="clearFilter()">Tühjenda</button>
+    <button class="button" id="csvButton" onclick="exportToCSV()">Export CSV</button>
+	<button class="button" id="excelButton" onclick="exportToExcel()">Export Excel</button>
+    <button class="button" id="logoutButton" onclick="logout()">Log Out</button>
+	<button class="button" id="statisticsButton" onclick="window.location.href='statistika.html'">Statistika</button>
+	<button class="button clicked" id="feedbackButton" onclick="window.location.href='tagaiside.html'">Tagasiside</button>
 
     <button id="logoutButton" onclick="logout()">Log Out</button>
 
@@ -30,12 +33,13 @@
       <tr>
         <th data-type="date">
           Kuupäev
+		  <br>
           <span class="clickable" onclick="sortTable(0, 'asc')">&#x25B2;</span>
           <span onclick="sortTable(0, 'desc')">&#x25BC;</span>
         </th>
         <th>Eesnimi <span class="clickable" onclick="sortTable(1, 'asc')">&#x25B2;</span><span onclick="sortTable(1, 'desc')">&#x25BC;</span></th>
         <th>Perekonnanimi <span class="clickable" onclick="sortTable(2, 'asc')">&#x25B2;</span><span onclick="sortTable(2, 'desc')">&#x25BC;</span></th>
-        <th>Tagasiside <span class="clickable" onclick="sortTable(4, 'asc')">&#x25B2;</span><span onclick="sortTable(4, 'desc')">&#x25BC;</span></th>
+        <th>Tagasiside <span class="clickable feedback" onclick="sortTable(4, 'asc')">&#x25B2;</span><span onclick="sortTable(4, 'desc')">&#x25BC;</span></th>
         <th>Email <span class="clickable" onclick="sortTable(5, 'asc')">&#x25B2;</span><span onclick="sortTable(5, 'desc')">&#x25BC;</span></th>
       </tr>
     </thead>
