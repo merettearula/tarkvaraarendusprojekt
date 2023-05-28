@@ -14,7 +14,7 @@ var sortDirection = {
   
     for (var i = 1; i < rows.length; i++) {
       var row = rows[i];
-      var dateCell = row.cells[0]; // Assuming the date column is at index 0
+      var dateCell = row.cells[0]; //kuupäev indexiga 0
   
       if (dateCell) {
         var dateText = dateCell.textContent;
@@ -30,10 +30,6 @@ var sortDirection = {
       }
     }
   }
-  
-  
-  
-  
   
   function parseDate(dateString) {
     var parts = dateString.split('-'); 
@@ -55,6 +51,8 @@ var sortDirection = {
     filterResults(); // Apply the filter with the cleared values
   }
   
+
+  //võrldeb valitud veeru praeguse ja järgmiste ridade väärtusi, määrab sortimisjärjestuse (kasvab või kahanevalt) ja vahetab vajaduse korral ridu.
   function sortTable(column, order) {
     var table = document.getElementById('resultsTable');
     var rows = table.rows;
@@ -73,7 +71,10 @@ var sortDirection = {
   
         var currentValue = currentCell.innerHTML.toLowerCase();
         var nextValue = nextCell.innerHTML.toLowerCase();
-  
+       
+        //Kui sortimisjärjestus on kahanev, võrdleb see väärtust currentValue < nextValue
+       //Kui currentValue on väiksem kui nextValue, tähendab see, et ridu tuleb kahaneva järjestuse saavutamiseks vahetada.
+
         if (order === 'asc' ? currentValue > nextValue : currentValue < nextValue) {
           shouldSwitch = true;
           break;
@@ -85,6 +86,7 @@ var sortDirection = {
         switching = true;
         switchCount++;
       } else {
+        //näitab, et kogu tabel on juba kasvavas järjekorras sorteeritud (terve tabel läbi käidud)
         if (switchCount === 0 && order === 'asc') {
           order = 'desc';
           switching = true;
@@ -99,14 +101,21 @@ var sortDirection = {
   function updateSortIndicator(column, order) {
     var headers = document.querySelectorAll('#resultsTable th span');
     for (var i = 0; i < headers.length; i++) {
+      //eemaldab eelmisest sortimisest kõik sisu
       headers[i].innerHTML = '';
     }
   
     var currentHeader = document.querySelectorAll('#resultsTable th')[column];
+    //Kui sortimise järjekord on tõusev (järjestus === 'asc' on true), 
+    //valib see praeguse headeri <span> esimese elemendi, kasutades parameetrit 'span:nth-child(1)'.
+
     var arrow = currentHeader.querySelector(order === 'asc' ? 'span:nth-child(1)' : 'span:nth-child(2)');
+
+    //Kui sortimisjärjekord on kahanev (järjestus === 'asc' on väär), 
+    //määrab see noole <span> elemendi sisemise HTML-i väärtuseks '&#x25BC;' (allapoole kolmnurk) 
     arrow.innerHTML = order === 'asc' ? '&#x25B2;' : '&#x25BC;';
   
-    // Toggle the order when the down arrow is clicked
+    //Kui alla kolmnurka klõsatakse, läheb funktsioon käima
     arrow.onclick = function() {
       var currentOrder = sortDirection.order === 'asc' ? 'desc' : 'asc';
       sortDirection.order = currentOrder;
@@ -120,7 +129,6 @@ var sortDirection = {
   
   var csvContent = "data:text/csv;charset=utf-8,";
   
-  // Iterate over the table rows and cells to construct the CSV content
   for (var i = 0; i < rows.length; i++) {
     var row = rows[i];
     var rowData = [];
@@ -133,17 +141,14 @@ var sortDirection = {
     csvContent += rowData.join(",") + "\n";
   }
   
-  // Create a temporary link element to initiate the download
   var encodedUri = encodeURI(csvContent);
   var link = document.createElement("a");
   link.setAttribute("href", encodedUri);
   link.setAttribute("download", "results.csv");
   document.body.appendChild(link);
   
-  // Click the link to trigger the download
   link.click();
   
-  // Cleanup: remove the temporary link element
   document.body.removeChild(link);
 }
 filterResults(); // Käivitab algse filtreerimise
@@ -155,19 +160,14 @@ function logout(){
 function exportToExcel() {
   var table = document.getElementById('resultsTable');
 
-  // Create a new workbook
   var workbook = XLSX.utils.book_new();
 
-  // Convert the table to a worksheet
   var worksheet = XLSX.utils.table_to_sheet(table);
 
-  // Add the worksheet to the workbook
   XLSX.utils.book_append_sheet(workbook, worksheet, 'Sheet1');
 
-  // Generate an Excel file
   var excelFile = XLSX.write(workbook, { bookType: 'xlsx', type: 'array' });
 
-  // Save the file
   saveAsExcelFile(excelFile, 'table.xlsx');
 }
 
@@ -175,16 +175,13 @@ function saveAsExcelFile(data, filename) {
   var blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
   var url = URL.createObjectURL(blob);
 
-  // Create a download link
   var a = document.createElement('a');
   a.href = url;
   a.download = filename;
 
-  // Append the link to the document and trigger the download
   document.body.appendChild(a);
   a.click();
 
-  // Clean up
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
