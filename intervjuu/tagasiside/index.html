@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +10,30 @@
 </head>
 <body>
     <div id="main">
-        <br><br><label for="feedback" id="feedback">Tagasiside</label>
-        <textarea type="text" name="feedback" id="feedback" placeholder="Sisesta tagasiside"></textarea><br>
-        <label for="email">Kui soovid oma küsimustele vastust, siis jäta oma e-maili aadress!</label>
-        <input type="email" name="email" id="email" placeholder="Sisesta oma e-mail">
+        <h2>Tagasiside</h2>
+        <br>
+        <label for="overall_feedback" id="overall_feedback">Kas intervjuusimulaator aitas valmistuda intervjuuks? </label>
+        <br>
+        <div id="feedback_buttons">
+        <input type="button" name="like_feedback" id="feedback_button" value="&#128077">
+        <input type="button" name="dislike_feedback" id="feedback_button" value="&#128078"></div>
+        <br>
+        <label for="feedback" id="feedback">Kui soovid jätta detailsemat tagasisidet:</label>
+        <br>
+        <textarea type="text" name="feedback" id="feedback" placeholder="trüki siia"></textarea>
+        <br>
+        <label for="question" id="question">Kui soovid küsida meilt midagi:</label>
+        <br>
+        <input type="text" name="questions" id="questions" placeholder="trüki siia">
+        <br>
+        <label for="email">Kui soovid oma küsimustele vastust, siis jäta oma e-maili aadress:</label>
+        <br>
+        <input type="email" name="email" id="email" placeholder="sisesta e-mail">
     </div><br>
     <div id="nextContainer">
         
-        <button onclick="window.location.href='saadetud'" type="submit" value="Submit">Saada tagasiside</button><br>
-        <button onclick="window.location.href='../lopp'">Tagasi</button>
+        <button class="submit_btn" onclick="window.location.href='saadetud'" type="submit" value="Submit">Saada tagasiside</button><br>
+        <button class="submit_btn" onclick="window.location.href='../lopp'">Tagasi</button>
     </div>
 </body>
 </html>
