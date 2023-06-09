@@ -1,0 +1,99 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.header {
+  margin-bottom: 20px;
+}
+
+.question-image {
+  max-width: 50%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  bottom: 50px;
+  
+}
+
+.question {
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 20px;
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.answer-options {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  text-align: center;
+  
+}
+
+label {
+  display: block;
+}
+
+/* Style the answer option button */
+.answer-options .answer-button {
+  display: block;
+  position: relative;
+  bottom: 0;
+  font-size: 16px;
+  padding: 10px;
+  width: 30vh;
+  height: 10vh;
+  border-radius: 15px;
+  background-color: 6bcaba;
+  color: #fff;
+  transition: background-color 0.3s;
+  margin-bottom: 10px;
+}
+
+.answer-options .answer-button:hover {
+  background-color: lightcoral;
+}
+
+.answer-options .answer-button.selected {
+  background-color: green;
+}
+
+/* Style the submit button */
+.submit-button {
+  display: block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: lightblue;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.submit-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+body {
+  font-family: 'Times New Roman', Times, serif;
+  background-color: rgb(255, 245, 235);
+  background-image: url("../komisjon_background.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
