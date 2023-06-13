@@ -34,10 +34,10 @@
           <span onclick="sortTable(0, 'desc')">&#x25BC;</span>
         </th>
         <th>Eesnimi <span class="clickable" onclick="sortTable(1, 'asc')">&#x25B2;</span><span onclick="sortTable(1, 'desc')">&#x25BC;</span></th>
-        <th>IP aadress <span class="clickable" onclick="sortTable(2, 'asc')">&#x25B2;</span><span onclick="sortTable(3, 'desc')">&#x25BC;</span></th>
-        <th>Õiged vastused <span class="clickable" onclick="sortTable(3, 'asc')">&#x25B2;</span><span onclick="sortTable(4, 'desc')">&#x25BC;</span></th>
-        <th>Valed vastused <span class="clickable" onclick="sortTable(4, 'asc')">&#x25B2;</span><span onclick="sortTable(5, 'desc')">&#x25BC;</span></th>
-        <th>Lõppskoor <span class="clickable" onclick="sortTable(5, 'asc')">&#x25B2;</span><span onclick="sortTable(6, 'desc')">&#x25BC;</span></th>
+        <th>IP aadress <span class="clickable" onclick="sortTable(2, 'asc')">&#x25B2;</span><span onclick="sortTable(2, 'desc')">&#x25BC;</span></th>
+        <th>Õiged vastused <span class="clickable" onclick="sortTable(3, 'asc')">&#x25B2;</span><span onclick="sortTable(3, 'desc')">&#x25BC;</span></th>
+        <th>Valed vastused <span class="clickable" onclick="sortTable(4, 'asc')">&#x25B2;</span><span onclick="sortTable(4, 'desc')">&#x25BC;</span></th>
+        <th>Lõppskoor <span class="clickable" onclick="sortTable(5, 'asc')">&#x25B2;</span><span onclick="sortTable(5, 'desc')">&#x25BC;</span></th>
       </tr>
     </thead>
     <tbody>
@@ -65,13 +65,13 @@
       echo "<strong>Haridus:</strong> $haridus<br>";
       echo "<strong>Amet:</strong> $amet<br>";
       echo "<strong>Huvid:</strong> $huvid<br>";
-      echo "<strong>Soorituste arv:</strong> $soorituste_arv<br>";
+      echo "<br><strong>Soorituste arv:</strong> $soorituste_arv<br>";
       echo "<strong>Õiged vastused:</strong> $oigesti<br>";
       echo "<strong>Õiged vastatud küsimused:</strong> $oigesti_nr<br>";
+      echo "<br><strong>Valesti nr:</strong> $valesti_nr<br>";
       echo "<strong>Valesti:</strong> $valesti<br>";
-      echo "<strong>Vastamata:</strong> $vastamata<br>";
+      echo "<br><strong>Vastamata:</strong> $vastamata<br>";
       echo "<strong>Vastamata nr:</strong> $vastamata_nr<br>";
-      echo "<strong>Valesti nr:</strong> $valesti_nr<br>";
       echo "</td>";
       echo "</tr>";
     }
@@ -82,7 +82,7 @@
 </tbody>
 </table>
 
-<script src="script.js"></script>
+<script src="script4.js"></script>
 </body>
 </html>
 
