@@ -28,16 +28,16 @@
   <thead>
       <tr>
         
-        <th data-type="date">
+        <th data-column="0" data-type="date">
           Kuupäev
           <span class="clickable" onclick="sortTable(0, 'asc')">&#x25B2;</span>
           <span onclick="sortTable(0, 'desc')">&#x25BC;</span>
         </th>
-        <th>Eesnimi <span class="clickable" onclick="sortTable(1, 'asc')">&#x25B2;</span><span onclick="sortTable(1, 'desc')">&#x25BC;</span></th>
-        <th>IP aadress <span class="clickable" onclick="sortTable(2, 'asc')">&#x25B2;</span><span onclick="sortTable(2, 'desc')">&#x25BC;</span></th>
-        <th>Õiged vastused <span class="clickable" onclick="sortTable(3, 'asc')">&#x25B2;</span><span onclick="sortTable(3, 'desc')">&#x25BC;</span></th>
-        <th>Valed vastused <span class="clickable" onclick="sortTable(4, 'asc')">&#x25B2;</span><span onclick="sortTable(4, 'desc')">&#x25BC;</span></th>
-        <th>Lõppskoor <span class="clickable" onclick="sortTable(5, 'asc')">&#x25B2;</span><span onclick="sortTable(5, 'desc')">&#x25BC;</span></th>
+        <th data-column="1">Eesnimi <span class="clickable" onclick="sortTable(1, 'asc')">&#x25B2;</span><span onclick="sortTable(1, 'desc')">&#x25BC;</span></th>
+        <th data-column="2">IP aadress <span class="clickable" onclick="sortTable(2, 'asc')">&#x25B2;</span><span onclick="sortTable(2, 'desc')">&#x25BC;</span></th>
+        <th data-column="3">Õiged vastused <span class="clickable" onclick="sortTable(3, 'asc')">&#x25B2;</span><span onclick="sortTable(3, 'desc')">&#x25BC;</span></th>
+        <th data-column="4">Valed vastused <span class="clickable" onclick="sortTable(4, 'asc')">&#x25B2;</span><span onclick="sortTable(4, 'desc')">&#x25BC;</span></th>
+        <th data-column="5">Lõppskoor <span class="clickable" onclick="sortTable(5, 'asc')">&#x25B2;</span><span onclick="sortTable(5, 'desc')">&#x25BC;</span></th>
       </tr>
     </thead>
     <tbody>
@@ -82,7 +82,7 @@
 </tbody>
 </table>
 
-<script src="script4.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
 
