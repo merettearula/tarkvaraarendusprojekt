@@ -3,75 +3,51 @@ var sortDirection = {
   order: ''
 };
 
+var rowCount = 0;
+
+
 function filterResults() {
   var fromInput = document.getElementById('from');
   var toInput = document.getElementById('to');
-  var fromDate = new Date(fromInput.value);
-  var toDate = new Date(toInput.value);
+  var fromDate = fromInput.value;
+  var toDate = toInput.value;
 
   var table = document.getElementById('resultsTable');
   var rows = table.getElementsByTagName('tr');
-//paneme paika mingi alguskuupäeva mida meie tabelis pole
-  var largestDate = new Date("2020-03-10");
+  var largestDate = new Date(-8640000000000000); // Initialize with a very small date
   var rowCount = 0;
-//uus tabeli rida
-  var newRow = table.insertRow(rows.length);
-  newRow.id = "summaryRow";
-  var dateCell = newRow.insertCell(0);
-  dateCell.id = "largestDate";
-  //tabeli suurus - tabeli header - viimane tabeli rida
-  var totalRowCount = table.rows.length - 2;
-  console.log(totalRowCount);
-  var countCell = newRow.insertCell(1);
-  countCell.innerHTML = totalRowCount;
-
-  //käime for loopiga üle tabeli, vaatame milline suurim date
-  for (var i = 0; i < rows.length; i++) {
-    var cell = rows[i].getElementsByTagName('td')[0]; 
-    if (cell) {
-      var cellDate = parseDate(cell.textContent.trim()); 
-      if (cellDate >= largestDate) {
-        largestDate = cellDate;
-        console.log(largestDate);
-      }
-    }
-  }
-  //largestDate õigesse formaati
-  var formattedDate = formatDate(largestDate);
-
-  document.getElementById('largestDate').textContent = formattedDate;
-  document.getElementById('totalRowCount').textContent = totalRowCount;
 
   for (var i = 1; i < rows.length; i++) {
-
     var row = rows[i];
-    var dateCell = row.cells[0]; 
-    
-    // kuupäev indexiga 0
+    var dateCell = row.cells[0];
+    var dateText = dateCell.textContent.trim().split(' ')[0];
+    var date = dateText.split(' ')[0];
 
-    if (dateCell) {
-      console.log(dateCell);
-      var dateText = dateCell.textContent;
-      var rowDate = new Date(dateText);
-      console.log(rowDate);
-      console.log(largestDate);
-      var dateParts = dateText.split('-');
-      var rowDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-
-      if (!isNaN(rowDate) && rowDate >= largestDate) {
-        largestDate = rowDate;
-      }
-
-      if (fromDate && rowDate < fromDate) {
-        row.style.display = 'none';
-      } else if (toDate && rowDate > toDate) {
-        row.style.display = 'none';
-      } else {
-        row.style.display = '';
-        rowCount++;
-      }
+    if (!isNaN(date) && date >= largestDate) {
+      largestDate = date;
     }
-}
+
+    if (fromDate && date < fromDate) {
+      row.style.display = 'none';
+      var vaataVeelButton = row.querySelector('.vaata-veel-btn');
+      var detailsRow = row.nextElementSibling;
+      if (vaataVeelButton && detailsRow) {
+        vaataVeelButton.innerHTML = 'Vaata veel';
+        detailsRow.style.display = 'none';
+      }
+    } else if (toDate && date > toDate) {
+      row.style.display = 'none';
+      var vaataVeelButton = row.querySelector('.vaata-veel-btn');
+      var detailsRow = row.nextElementSibling;
+      if (vaataVeelButton && detailsRow) {
+        vaataVeelButton.innerHTML = 'Vaata veel';
+        detailsRow.style.display = 'none';
+      }
+    } else {
+      row.style.display = '';
+      rowCount++;
+    }
+  }
 }
 
 function parseDate(dateString) {
@@ -84,15 +60,21 @@ function parseDate(dateString) {
 
 
 function clearFilter() {
+  window.location.href = "http://greeny.cs.tlu.ee/~arulmere/test3.php";
+}
+  /*
   var fromInput = document.getElementById('from');
   var toInput = document.getElementById('to');
-  
-  // Reset the date inputs
+
+  fromInput.value = '';
+  toInput.value = '';
+
   fromInput.value = 'none';
   toInput.value = 'none';
   
-  filterResults(); // Apply the filter with the cleared values
-}
+  filterResults();
+}*/
+
 
 
 //võrldeb valitud veeru praeguse ja järgmiste ridade väärtusi, määrab sortimisjärjestuse (kasvab või kahanevalt) ja vahetab vajaduse korral ridu.
@@ -110,13 +92,10 @@ function sortTable(column, order) {
       var nextRow = rows[i + 1];
 
       var currentCell = currentRow.cells[column];
-      var nextCell = nextRow.cells[column];
+      var nextCell = nextRow ? nextRow.cells[column] : null;
 
-      var currentValue = currentCell.innerHTML.toLowerCase();
-      var nextValue = nextCell.innerHTML.toLowerCase();
-     
-      //Kui sortimisjärjestus on kahanev, võrdleb see väärtust currentValue < nextValue
-     //Kui currentValue on väiksem kui nextValue, tähendab see, et ridu tuleb kahaneva järjestuse saavutamiseks vahetada.
+      var currentValue = currentCell ? currentCell.innerHTML.toLowerCase() : '';
+      var nextValue = nextCell ? nextCell.innerHTML.toLowerCase() : '';
 
       if (order === 'asc' ? currentValue > nextValue : currentValue < nextValue) {
         shouldSwitch = true;
@@ -129,7 +108,6 @@ function sortTable(column, order) {
       switching = true;
       switchCount++;
     } else {
-      //näitab, et kogu tabel on juba kasvavas järjekorras sorteeritud (terve tabel läbi käidud)
       if (switchCount === 0 && order === 'asc') {
         order = 'desc';
         switching = true;
@@ -138,8 +116,9 @@ function sortTable(column, order) {
   }
 
   updateSortIndicator(column, order);
-}
+  attachEventListeners();
 
+}
 
 function updateSortIndicator(column, order) {
   var headers = document.querySelectorAll('#resultsTable th span');
@@ -196,9 +175,6 @@ document.body.removeChild(link);
 }
 filterResults(); // Käivitab algse filtreerimise
 
-function logout(){
-  window.location.href = "http://www.tlu.ee/~merette/tarkvaraarendusprojekt/logi_sisse.html";
-}
 
 function exportToExcel() {
 var table = document.getElementById('resultsTable');
@@ -231,33 +207,52 @@ URL.revokeObjectURL(url);
 
 //saame eraldi aasta, kuu, päeva
 function formatDate(date) {
-var year = date.getFullYear();
-//kui kuu on ühekohaline, kasutame meetodit padStart() et lisada null.
-var month = (date.getMonth() + 1).toString().padStart(2, '0');
-var day = date.getDate().toString().padStart(2, '0');
-return year + '-' + month + '-' + day;
+  var year = date.getFullYear();
+  //kui kuu on ühekohaline, kasutame meetodit padStart() et lisada null.
+  var month = (date.getMonth() + 1).toString().padStart(2, '0');
+  var day = date.getDate().toString().padStart(2, '0');
+  return year + '-' + month + '-' + day;
+}
+
+var vaataVeelButtons = document.getElementsByClassName('vaata-veel-btn');
+for (var i = 0; i < vaataVeelButtons.length; i++) {
+  vaataVeelButtons[i].addEventListener('click', loadDetails);
 }
 
 function loadDetails(button) {
-  var detailsRow = button.parentNode.parentNode.nextElementSibling;
-  detailsRow.style.display = detailsRow.style.display === 'none' ? 'table-row' : 'none';
+  var row = button.closest('tr'); // Find the closest parent table row
+
+  if (row) {
+    var detailsRow = row.nextElementSibling;
+
+    if (detailsRow && detailsRow.classList.contains('details-row')) {
+      if (detailsRow.style.display === 'none') {
+        detailsRow.style.display = 'table-row';
+        button.innerHTML = 'Peida';
+      } else {
+        detailsRow.style.display = 'none';
+        button.innerHTML = 'Vaata veel';
+      }
+    } else {
+      console.error('Invalid details row element');
+    }
+  } else {
+    console.error('Invalid button element or parent structure');
+  }
+}
+// Hide all details rows initially
+var detailsRows = document.getElementsByClassName('details-row');
+for (var i = 0; i < detailsRows.length; i++) {
+  detailsRows[i].style.display = 'none';
 }
 
-var vaataVeelButtons = document.getElementsByClassName('vaata-veel-btn');
-for (var i = 0; i < vaataVeelButtons.length; i++) {
-  vaataVeelButtons[i].addEventListener('click', function () {
-    loadDetails(this);
-  });
+function attachEventListeners() {
+  var vaataVeelButtons = document.getElementsByClassName('vaata-veel-btn');
+  for (var i = 0; i < vaataVeelButtons.length; i++) {
+    var button = vaataVeelButtons[i];
+    button.removeEventListener('click', loadDetails); // Remove existing event listener
+    button.addEventListener('click', loadDetails); // Add new event listener
+  }
 }
 
-/*var row = button.parentNode.parentNode;
-var nextRow = row.nextElementSibling;
-nextRow.style.display = nextRow.style.display === 'none' ? 'table-row' : 'none';
-}
 
-var vaataVeelButtons = document.getElementsByClassName('vaata-veel-btn');
-for (var i = 0; i < vaataVeelButtons.length; i++) {
-  vaataVeelButtons[i].addEventListener('click', function () {
-    loadDetails(this);
-  });
-}*/
