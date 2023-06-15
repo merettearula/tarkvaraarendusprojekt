@@ -1,7 +1,7 @@
 body {
     font-family: Arial, sans-serif; 
     margin: 20px;
-  background-color: rgb(255, 245, 235);
+	background-color: #FFFFFF;
   }
   
   h1 {
@@ -13,11 +13,10 @@ body {
   }
   
   table {
-    width: 100%;
     border-collapse: collapse;
     position: absolute;
     top: 170px;
-    left: 0px;
+    left: 38px;
     background-color: white;
     border: 1px solid black;
   }
@@ -30,62 +29,80 @@ body {
   
   button {
     margin-left: 10px;
+	padding: 5px;
+	cursor: pointer;
+	background-color: #6bcaba;
+	border-radius: 10px;
+	transition-duration: 0.3s;
   }
   
-  span:hover {
-    cursor: pointer;
-  }
-  
-  .button{
-  cursor: pointer;
-  }
+  button:hover{
+	background-color: #009999;
+	color: black;  
+  }  
   
   #logoutButton {
     position: absolute;
     top: 10px;
-    right: 10px;
+    right: 20px;
   }
   .wrap-cell {
     word-wrap: break-word;
   }
   
   #feedbackButton {
-  position: absolute;
-  top: 120px;
-  left: 120px;
-  padding: 10px 24px;
-  border-radius: 8px;
-  transition-duration: 0.4s;
+	position: absolute;
+	top: 120px;
+	left: 165px;
+	padding: 10px;
+	margin: 5px;
+	border: 1px solid #000000;
+	cursor: pointer;
+	width: 125px;
+	border-radius: 15px;
+	transition-duration: 0.3s;
   }
   #feedbackButton:hover{
-  background-color: #d9d9d9;
+  background-color: #009999;
   color: black;
   }
   
   #statisticsButton{
-  position: absolute;
-  top: 120px;
-  left: 5px;
-  padding: 10px 24px;
-  border-radius: 8px;
-  transition-duration: 0.4s;
+	position: absolute;
+	top: 120px;
+	left: 30px;
+	padding: 10px;
+	margin: 5px;
+	border: 1px solid #000000;
+	cursor: pointer;
+	width: 125px;
+	border-radius: 15px;
+	transition-duration: 0.3s;
   }
   
   #statisticsButton:hover{
-  background-color: #d9d9d9;
+  background-color: #009999;
   color: black;
   }
   
   .clicked{
-  background-color: #d9d9d9;
+	background-color: #009999;
+  }
+  
+  .notClicked{
+	background-color: #6bcaba;
   }
   
   #csvButton{
   position:absolute;
-  right: 10px;
+  right: 20px;
   }
   
   #excelButton{
   position:absolute;
-  right: 110px;
+  right: 120px;
+  }
+  
+  #resultsTable{
+	width: 80%;
   }
